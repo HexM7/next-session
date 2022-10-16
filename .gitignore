@@ -71,3 +71,7 @@ lib/
 package-lock.json
 
 test/**/yarn.lock
+
+# editor configs
+.vscode/
+.idea/
