@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "next-session",
+  "name": "@zignis/next-session",
   "version": "4.0.4",
   "description": "Simple promise-based session for Next.js",
   "keywords": [
@@ -40,11 +40,17 @@
     "url": "git+https://github.com/hoangvvo/next-session.git"
   },
   "author": "Hoang Vo (https://hoangvvo.com)",
+  "contributors": [
+    {
+      "name": "zignis",
+      "url": "https://github.com/zignis"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hoangvvo/next-session/issues"
+    "url": "https://github.com/zignis/next-session/issues"
   },
-  "homepage": "https://github.com/hoangvvo/next-session#readme",
+  "homepage": "https://github.com/zignis/next-session#readme",
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",

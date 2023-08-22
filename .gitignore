@@ -73,5 +73,5 @@ package-lock.json
 test/**/yarn.lock
 
 # editor configs
-.vscode/
-.idea/
+.vscode
+.idea

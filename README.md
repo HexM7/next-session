@@ -14,9 +14,9 @@ Lightweight _promise-based_ session middleware for [Next.js](https://github.com/
 
 ```sh
 // NPM
-npm install next-session
+npm install @zignis/next-session
 // Yarn
-yarn add next-session
+yarn add @zignis/next-session
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ yarn add next-session
 
 ```js
 // ./lib/get-session.js
-import nextSession from "next-session";
+import nextSession from "@zignis/next-session";
 export const getSession = nextSession(options);
 ```
 
@@ -40,7 +40,7 @@ export const getSession = nextSession(options);
 ```js
 import { getSession } from "./lib/get-session.js";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const session = await getSession(req, res);
   session.views = session.views ? session.views + 1 : 1;
   // Also available under req.session:
@@ -54,10 +54,10 @@ export default function handler(req, res) {
 Usage in API Routes may result in `API resolved without sending a response`. This can be solved by either adding:
 
 ```js
-import nextSession from "next-session";
+import nextSession from "@zignis/next-session";
 const getSession = nextSession();
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const session = await getSession(req, res);
   /* ... */
 }
@@ -72,10 +72,10 @@ export const config = {
 ...or setting `options.autoCommit` to `false` and do `await session.commit()`.
 
 ```js
-import nextSession from "next-session";
+import nextSession from "@zignis/next-session";
 const getSession = nextSession({ autoCommit: false });
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const session = await getSession(req, res);
   /* ... */
   await session.commit();
@@ -128,7 +128,7 @@ app.get("/", (req, res) => {
 [micro](https://github.com/vercel/micro), [Vercel Serverless Functions](https://vercel.com/docs/functions/introduction)
 
 ```js
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const session = await getSession(req, res);
   res.end(
     `In this session, you have visited this website ${session.views} time(s).`
@@ -143,7 +143,7 @@ const http = require("http");
 
 const server = http.createServer(async (req, res) => {
   const session = await getSession(req, res);
-  res.end(`In this session, you have visited this website ${session.views} time(s).`;
+  res.end(`In this session, you have visited this website ${session.views} time(s).`);
 });
 server.listen(8080);
 ```
@@ -248,7 +248,7 @@ Refer to [MemoryStore](https://github.com/hoangvvo/next-session/blob/master/src/
 _TypeScript:_ the `SessionStore` type can be used to aid implementation:
 
 ```ts
-import type { SessionStore } from "next-session";
+import type { SessionStore } from "@zignis/next-session";
 
 class CustomStore implements SessionStore {}
 ```
@@ -262,8 +262,8 @@ To use [Express/Connect stores](https://github.com/expressjs/session#compatible-
 We include the util [`promisifyStore`](./src/compat.ts#L29) in `next-session/lib/compat` to do just that:
 
 ```js
-import nextSession from "next-session";
-import { promisifyStore } from "next-session/lib/compat";
+import nextSession from "@zignis/next-session";
+import { promisifyStore } from "@zignis/next-session/lib/compat";
 import SomeConnectStore from "connect-xyz";
 
 const connectStore = new SomeConnectStore();
@@ -281,8 +281,8 @@ const RedisStore = require("connect-redis")(session);
 
 // Use `expressSession` from `next-session/lib/compat` as the replacement
 
-import nextSession from "next-session";
-import { expressSession, promisifyStore } from "next-session/lib/compat";
+import nextSession from "@zignis/next-session";
+import { expressSession, promisifyStore } from "@zignis/next-session/lib/compat";
 import RedisStoreFactory from "connect-redis";
 import Redis from "ioredis";
 
