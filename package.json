@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@zignis/next-session",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple promise-based session for Next.js",
   "keywords": [
     "nextjs",
